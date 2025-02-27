@@ -1,0 +1,9 @@
+textbook.pdf
+syllabus.pdf
+*/slides/
+*/sections/
+
+*/.venv
+*/.ruff_cache
+
+*/section-pdfs/
