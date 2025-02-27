@@ -1,21 +1,21 @@
 {
-    "cSpell.words": [
-        "binom",
-        "htbp",
-        "includegraphics",
-        "mathbf",
-        "pagebreak",
-        "pandoc",
-        "Perales",
-        "textbf",
-        "textwidth"
-    ],
-    "emeraldwalk.runonsave": {
-    "commands": [
-      {
-        "match": ".*\\.md$",
-        "cmd": "/usr/bin/pandoc -f markdown+tex_math_single_backslash -o ${fileDirname}/${fileBasenameNoExt}.pdf --pdf-engine=pdflatex ${file}"
-      }
-    ]
-  }
+  "cSpell.words": [
+      "binom",
+      "htbp",
+      "includegraphics",
+      "mathbf",
+      "pagebreak",
+      "pandoc",
+      "Perales",
+      "textbf",
+      "textwidth"
+  ],
+  "emeraldwalk.runonsave": {
+  "commands": [
+    {
+      "match": ".*\\.md$",
+      "cmd": "/usr/bin/pandoc -f markdown+tex_math_single_backslash -o ${fileDirname}/${fileBasenameNoExt}.pdf --pdf-engine=pdflatex ${file}"
+    }
+  ]
+}
 }
