@@ -15,15 +15,17 @@ I assume that the course is structured in weekly modules and that course work in
 
 First, I create a directory called `module-{x}` where `x` is that week's module number.
 
-Then, I create a markdown 
+Then, I create a markdown like [assignment-example.md](module-example/assignment-example.md). I generally use inline latex in markdown for all the problem sets, see the example assignment for more details.
 
-- Problem Set
-    - I 
+The devcontainer uses the [Run on Save extension](https://github.com/emeraldwalk/vscode-runonsave) to [run a command](.vscode/settings.json) that creates a pdf of any markdown saved using [pandoc](https://pandoc.org/) and [pdflatex](https://pdflatex.com/).
 
-## Opinionated Technology Choices
+For any part of the assignment that uses Python, I change directory to the module and then use I use [uv](https://docs.astral.sh/uv/) which is already installed on the devcontainer to set up Python for each module.
 
-### Python
+1. `cd module-example`
+2. `uv init`
+3. `uv add numpy` or whatever dependencies you need.
+4. `uv run software_assignment.py`
+5. [Optional for linting] `uv add ruff`
+6. [Optional for linting] `uv run -m ruff format`
 
-### Latex
-
-### Markdown
+I then copy the Python code into the assignment and link any images created from a library like `matplotlib`. See the example assignment for more details.
