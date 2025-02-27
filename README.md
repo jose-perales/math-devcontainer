@@ -25,7 +25,7 @@ For any part of the assignment that uses Python, I change directory to the modul
 
 1. `cd module-example`
 2. `uv init`
-3. `uv add numpy` or whatever dependencies you need.
+3. `uv add numpy matplotlib` or whatever dependencies you need.
 4. `uv run software_assignment.py`
 5. [Optional for linting] `uv add ruff`
 6. [Optional for linting] `uv run -m ruff format`
