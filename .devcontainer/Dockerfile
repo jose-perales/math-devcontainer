@@ -27,5 +27,4 @@ ENV PATH="/home/$USERNAME/.local/bin:$PATH"
 # Install UV explicitly as vscode user
 RUN curl -fsSL https://astral.sh/uv/install.sh | sh
 
-# Verify UV installation
 CMD [ "bin/sh" ]
