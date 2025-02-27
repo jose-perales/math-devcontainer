@@ -11,7 +11,7 @@ graphics: yes
 
 **X.Y.1 Some exercise from the textbook that likely has inline latex like $\boldsymbol{\int_0^{\infty} e^{-x} \,dx}$.**
 
-The answer to the exercise, generally has inline latex as well like $\int_0^{\infty} e^{-x} \,dx$. Often times, there are lines like the following which are all latex,
+The answer to the exercise generally has inline latex as well like $\int_0^{\infty} e^{-x} \,dx$. Often times there are lines like the following which are all latex,
 
 $$\int_0^{\infty} e^{-x} \,dx = \left[ e^x \right]_0^{\infty}=\lim_{x \to \infty}\left( -e^{-x} \right) - \left( -e^{-0} \right) = 0 - (-1) = 1$$
 
