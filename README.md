@@ -19,7 +19,7 @@ Then, I create a markdown like [assignment-example.md](module-example/assignment
 
 The devcontainer uses the [Run on Save extension](https://github.com/emeraldwalk/vscode-runonsave) to [run a command](.vscode/settings.json) that creates a pdf of any markdown saved using [pandoc](https://pandoc.org/) and [pdflatex](https://pdflatex.com/).
 
-Sometimes pandoc will fail to create a pdf on save because of a formatting error. To see the `Run on Save` logging and debug the error, I got to the Output in the bottom panel of VS Code, and 
+Sometimes pandoc will fail to create a pdf on save because of a formatting error. To see the `Run on Save` logging and debug the error, I got to the Output in the bottom panel of VS Code to investigate the error.
 
 For any part of the assignment that uses Python, I change directory to the module and then use I use [uv](https://docs.astral.sh/uv/) which is already installed on the devcontainer to set up Python for each module.
 
