@@ -25,5 +25,5 @@ plt.ylabel('y')
 plt.title('Plot $y=\int_0^{\infty}e^{-x}\,dx$ and $y=e^{-x}$')
 plt.legend()
 
-# Save the plot
-plt.savefig("/workspace/module-example/software-assignment.png")
+# Save the plot in the new directory
+plt.savefig("/workspace/module-example-tex/software-assignment.png")

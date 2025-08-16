@@ -14,8 +14,8 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
     python3 python3-pip git curl zsh lsb-release unzip gnupg wget software-properties-common shfmt jq gh
 
-# Install pandoc and pdflatex
-RUN apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+# Install TeX Live (pdflatex) and ChkTeX (lint) – pandoc removed
+RUN apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra chktex latexmk
 
 # Switch to vscode user before installing uv
 USER $USERNAME
