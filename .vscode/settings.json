@@ -12,7 +12,7 @@
     "commands": [
       {
         "match": ".*\\.tex$",
-        "cmd": "if [ -f ${fileDirname}/Makefile ]; then make -C ${fileDirname} pdf; else pdflatex -interaction=nonstopmode -halt-on-error ${file}; fi"
+        "cmd": "make -C ${workspaceFolder} build-tex-keep-pdf DIR=${fileDirname}"
       }
     ]
   }
