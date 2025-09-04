@@ -1,6 +1,6 @@
 # math-devcontainer
 
-A devcontainer to build a grad school math course workspace. Opioninated for Python, Latex, and Markdown.
+A devcontainer to build a grad school math course workspace. Opioninated for Python and Latex.
 
 ## How to use the devcontainer
 
@@ -15,9 +15,9 @@ I assume that the course is structured in weekly modules and that course work in
 
 First, I create a directory called `module-{x}` where `x` is that week's module number.
 
-Then, I create a markdown like [assignment-example.md](module-example/assignment-example.md). I generally use inline latex in markdown for all the problem sets, see the example assignment for more details.
+Then, I create a text file like [assignment-example.md](module-example/assignment-example.md). See the example assignment for more details.
 
-The devcontainer includes a full LaTeX toolchain (TeX Live) plus [ChkTeX](https://www.nongnu.org/chktex/) for linting LaTeX source. The previous automatic markdown→PDF on save via pandoc has been removed to keep the image lean and simplify dependencies. You can still export Markdown to PDF manually (e.g. using VS Code's Markdown PDF extensions or an external pandoc install on your host) if desired.
+The devcontainer includes a full LaTeX toolchain (TeX Live) plus [ChkTeX](https://www.nongnu.org/chktex/) for linting LaTeX source.
 
 To lint a LaTeX file you can run:
 
