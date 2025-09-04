@@ -1,6 +1,6 @@
 # math-devcontainer
 
-A devcontainer to build a grad school math course workspace. Opioninated for Python, Latex, and Markdown.
+A devcontainer to build a grad school math course workspace. Opioninated for Python and Latex.
 
 ## How to use the devcontainer
 
@@ -15,11 +15,15 @@ I assume that the course is structured in weekly modules and that course work in
 
 First, I create a directory called `module-{x}` where `x` is that week's module number.
 
-Then, I create a markdown like [assignment-example.md](module-example/assignment-example.md). I generally use inline latex in markdown for all the problem sets, see the example assignment for more details.
+Then, I create a text file like [assignment-example.md](module-example/assignment-example.md). See the example assignment for more details.
 
-The devcontainer uses the [Run on Save extension](https://github.com/emeraldwalk/vscode-runonsave) to [run a command](.vscode/settings.json) that creates a pdf of any markdown saved using [pandoc](https://pandoc.org/) and [pdflatex](https://pdflatex.com/).
+The devcontainer includes a full LaTeX toolchain (TeX Live) plus [ChkTeX](https://www.nongnu.org/chktex/) for linting LaTeX source.
 
-Sometimes pandoc will fail to create a pdf on save because of a formatting error. To see the `Run on Save` logging and debug the error, I got to the Output in the bottom panel of VS Code to investigate the error.
+To lint a LaTeX file you can run:
+
+```
+chktex assignment-example.tex
+```
 
 For any part of the assignment that uses Python, I change directory to the module and then use I use [uv](https://docs.astral.sh/uv/) which is already installed on the devcontainer to set up Python for each module.
 

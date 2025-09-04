@@ -5,16 +5,15 @@
       "includegraphics",
       "mathbf",
       "pagebreak",
-      "pandoc",
       "textbf",
       "textwidth"
   ],
   "emeraldwalk.runonsave": {
-  "commands": [
-    {
-      "match": ".*\\.md$",
-      "cmd": "/usr/bin/pandoc -f markdown+tex_math_single_backslash -o ${fileDirname}/${fileBasenameNoExt}.pdf --pdf-engine=pdflatex ${file}"
-    }
-  ]
-}
+    "commands": [
+      {
+        "match": ".*\\.tex$",
+        "cmd": "make -C ${workspaceFolder} build-tex-keep-pdf DIR=${fileDirname}"
+      }
+    ]
+  }
 }
