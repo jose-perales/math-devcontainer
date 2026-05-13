@@ -1,18 +1,49 @@
 {
   "cSpell.words": [
-      "binom",
-      "htbp",
-      "includegraphics",
-      "mathbf",
-      "pagebreak",
-      "textbf",
-      "textwidth"
+    "binom",
+    "chktex",
+    "codespell",
+    "htbp",
+    "includegraphics",
+    "latexindent",
+    "latexmk",
+    "mathbf",
+    "nonstopmode",
+    "pagebreak",
+    "pdflatex",
+    "synctex",
+    "textbf",
+    "textwidth"
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    }
   ],
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": ".*\\.tex$",
-        "cmd": "make -C ${workspaceFolder} build-tex-keep-pdf DIR=${fileDirname}"
+        "match": ".*/solutions/.+/.*\\.tex$",
+        "cmd": "make -C ${workspaceFolder} format-one FILE=${file} && make -C ${workspaceFolder} build-tex-keep-pdf DIR=$(dirname $(dirname ${fileDirname}))"
+      },
+      {
+        "match": ".*/solutions/.*\\.tex$",
+        "cmd": "make -C ${workspaceFolder} format-one FILE=${file} && make -C ${workspaceFolder} build-tex-keep-pdf DIR=$(dirname ${fileDirname})"
+      },
+      {
+        "match": "^(?!.*/solutions/).*\\.tex$",
+        "cmd": "make -C ${workspaceFolder} format-one FILE=${file} && make -C ${workspaceFolder} build-tex-keep-pdf DIR=${fileDirname}"
       }
     ]
   }
