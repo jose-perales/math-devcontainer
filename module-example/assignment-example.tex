@@ -5,6 +5,21 @@
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{gray}\itshape,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    numbersep=5pt,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true
+}
 \geometry{margin=1in}
 \title{Module Example Assignment\\\large Chapter X, Sections Y-Z}
 \author{Your Name}
@@ -17,9 +32,9 @@
 
 The answer to the exercise generally has inline latex as well like $\int_0^{\infty} e^{-x} \,dx$. Often times there are lines like the following which are all LaTeX,
 \begin{align*}
-\int_0^{\infty} e^{-x} \,dx &= \left[-e^{-x} \right]_0^{\infty} \\
-&= \lim_{x \to \infty} (-e^{-x}) - (-e^{0}) \\
-&= 0 - (-1) = 1.
+    \int_0^{\infty} e^{-x} \,dx & = {\left[-e^{-x} \right]}_0^{\infty}       \\
+                                & = \lim_{x \to \infty} (-e^{-x}) - (-e^{0}) \\
+                                & = 0 - (-1) = 1.
 \end{align*}
 
 \pagebreak
@@ -28,33 +43,15 @@ The answer to the exercise generally has inline latex as well like $\int_0^{\inf
 \textbf{Some prompt assigned as a software assignment. For example, create a visualization representing $\boldsymbol{\int_0^{\infty} e^{-x} \,dx}$.}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.95\textwidth]{software-assignment.png}
-  \caption{Visualization of $e^{-x}$ and its integral approximation.}
+    \centering
+    \includegraphics[width=0.95\textwidth]{software-assignment.png}
+    \caption{Visualization of $e^{-x}$ and its integral approximation.}
 \end{figure}
 
-\vspace{1em}
+\pagebreak
+
 \noindent Below is the Python code used to generate the figure:
 
-\begin{verbatim}
-import numpy as np
-import matplotlib.pyplot as plt
-
-def f(x):
-    return np.exp(-x)
-
-x = np.linspace(0, 10, 400)
-y = f(x)
-integral = np.cumsum(y) * (x[1] - x[0])
-
-plt.plot(x, y, label='$e^{-x}$')
-plt.fill_between(x, y, alpha=0.2)
-plt.plot(x, integral, label='$\\int_0^{\\infty}e^{-x}\\,dx$', linestyle='--')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Plot $y=\\int_0^{\\infty}e^{-x}\\,dx$ and $y=e^{-x}$')
-plt.legend()
-plt.savefig("/workspace/module-example-tex/software-assignment.png")
-\end{verbatim}
+\lstinputlisting[language=Python]{main.py}
 
 \end{document}
