@@ -15,7 +15,21 @@ RUN apt-get update && apt-get install -y \
     python3 python3-pip git curl zsh lsb-release unzip gnupg wget software-properties-common shfmt jq gh
 
 # Install TeX Live (pdflatex) and ChkTeX (lint) – pandoc removed
-RUN apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra chktex latexmk
+# Add texlive-extra-utils (provides latexindent) + explicit Perl module deps for full latexindent functionality
+RUN apt-get update && apt-get install -y --fix-missing \
+    texlive-latex-base \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-latex-extra \
+    texlive-science \
+    texlive-extra-utils \
+    chktex \
+    latexmk \
+    liblog-log4perl-perl \
+    libfile-homedir-perl \
+    libyaml-tiny-perl \
+    python3-pygments && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Switch to vscode user before installing uv
 USER $USERNAME

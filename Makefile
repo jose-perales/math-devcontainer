@@ -18,6 +18,9 @@ help:
 	@echo "  build-tex-keep-pdf DIR=path         Keep only PDF, clean up auxiliary files"
 	@echo "  build-tex-keep-pdf-logs DIR=path    Keep PDF and log files, clean up other auxiliary files"
 	@echo "  clean DIR=path                      Clean auxiliary files in specified directory"
+	@echo "  format                              Run latexindent over all tracked .tex files"
+	@echo "  format-one FILE=path                Format a single .tex file"
+	@echo "  format-check                        Fail if formatting diffs are present"
 
 # Compile with full output (keep all files)
 .PHONY: build-tex-full-output
@@ -37,6 +40,11 @@ build-tex-keep-pdf:
 		pdflatex -interaction=nonstopmode -halt-on-error "$$(basename "$$tex_file")"; \
 	done
 	@$(MAKE) clean DIR=$(DIR)
+
+# Same as build-tex-keep-pdf but formats all sources first
+.PHONY: build-tex-keep-pdf-with-format
+build-tex-keep-pdf-with-format: format
+	@$(MAKE) --no-print-directory build-tex-keep-pdf DIR=$(DIR)
 
 # Compile and keep PDF and logs
 .PHONY: build-tex-keep-pdf-logs
@@ -70,3 +78,34 @@ clean-except-logs:
 	@find $(DIR) -maxdepth 1 -name "*.fdb_latexmk" -delete
 	@find $(DIR) -maxdepth 1 -name "*.synctex.gz" -delete
 	@echo "Cleanup complete in $(DIR) (logs preserved)."
+
+# Gather all version-controlled TeX sources (excluding potential backup files)
+TEX_SOURCES := $(shell git ls-files '*.tex')
+
+.PHONY: format
+format:
+	@echo "Formatting TeX sources with latexindent...";
+	@for f in $(TEX_SOURCES); do \
+	  echo "  $$f"; \
+	  latexindent -l=.latexindent.yaml -w "$$f" >/dev/null 2>&1 || { echo "latexindent failed on $$f"; exit 1; }; \
+	done
+	@echo "Formatting complete."
+
+# Format a single file: make format-one FILE=path/to/file.tex
+.PHONY: format-one
+format-one:
+	@test -n "$(FILE)" || { echo "ERROR: specify FILE=..."; exit 1; }
+	@echo "Formatting $(FILE)";
+	@latexindent -l=.latexindent.yaml -w "$(FILE)" >/dev/null 2>&1 || { echo "latexindent failed on $(FILE)"; exit 1; }
+	@echo "Done."
+
+# CI check: fail if any file would be reformatted
+.PHONY: format-check
+format-check:
+	@echo "Checking formatting..."
+	@dirty=0; \
+	for f in $(TEX_SOURCES); do \
+	  latexindent -l=.latexindent.yaml "$$f" 2>/dev/null | diff -q "$$f" - >/dev/null 2>&1 || { echo "  needs formatting: $$f"; dirty=1; }; \
+	done; \
+	if [ $$dirty -eq 1 ]; then echo "Formatting check FAILED. Run 'make format' to fix."; exit 1; fi
+	@echo "All files formatted correctly."

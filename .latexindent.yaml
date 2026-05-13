@@ -1,0 +1,43 @@
+# Global configuration for latexindent.pl
+# See: texdoc latexindent for full option list
+# Indentation style
+defaultIndent: '    '
+indentPreamble: 1
+onlyOneBackUp: 1
+# Trailing whitespace cleanup
+removeTrailingWhitespace:
+  beforeProcessing: 1
+  afterProcessing: 1
+# Preserve up to 1 consecutive blank line
+preserveBlankLines: 1
+# Wrap text (avoid breaking displayed math/alignment)
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 100
+    when: after
+    textWrapEnabled: 0   # disable global wrapping; enable selectively per section if desired
+# Do not add extra indent inside these math environments
+noAdditionalIndent:
+  environments:
+    - aligned
+    - alignedat
+    - align
+    - equation
+    - eqnarray
+    - gather
+    - multline
+# Align ampersands in alignment environments
+lookForAlignDelims:
+  delims:
+    - name: aligned
+    - name: alignedat
+    - name: align
+    - name: array
+    - name: tabular
+# Commands that should have their arguments kept on one line
+oneLineCommands:
+  - \item
+# Do not break lines inside these commands
+noIndentBlock:
+  begin: '% *noindent start'
+  end: '% *noindent end'

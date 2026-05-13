@@ -17,7 +17,8 @@
                 "mathematic.vscode-latex",
                 "goessner.mdmath",
                 "yzhang.markdown-all-in-one",
-                "james-yu.latex-workshop"
+                "james-yu.latex-workshop",
+                "GitHub.vscode-pull-request-github"
             ]
         }
     },
